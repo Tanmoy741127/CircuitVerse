@@ -79,9 +79,11 @@ Additional instructions can be found [here](https://www.howtoforge.com/tutorial/
 - [Run Terminal as a login shell](https://rvm.io/integration/gnome-terminal/) so ruby and rails will be available.
 
 #### Debug the application
-1. Run bin/dev to run application server, background job queue and asset compiler
-2. In vscode, open the debug tab and select `Attach Debugger` from the dropdown and run
-3. Now, you can set breakpoint and debug the application
+1. You need to install [VSCode rdbg Ruby Debugger](https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg
+) extension
+2. Run bin/dev to run application server, background job queue and asset compiler
+3. In vscode, open the debug tab and select `Attach Debugger` from the dropdown and run
+4. Now, you can set breakpoint and debug the application
 
 #### (Optional) yosys installation for Verilog RTL Synthesis
 If you wish to do Verilog RTL Synthesis/create CircuitVerse Verilog Circuits in your local development environment, you need to:
