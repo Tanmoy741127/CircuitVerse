@@ -3,15 +3,7 @@
     "configurations": [
         {
             "type": "rdbg",
-            "name": "Run & Debug",
-            "request": "launch",
-            "script": "${workspaceRoot}/bin/rails s",
-            "useBundler": false,
-            "command": "bundle exec ruby"
-        },
-        {
-            "type": "rdbg",
-            "name": "Attach with debugger",
+            "name": "Attach debugger",
             "request": "attach"
         }
     ]
