@@ -118,8 +118,11 @@ gem "strong_migrations"
 gem 'rails-data-migrations'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  # Not required byebug anymore due to new `debug` gem 
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console 
+  # gem "byebug", platforms: %i[mri mingw x64_mingw]
+
+
   # Adds support for Capybara system testing and selenium driver
   gem "coveralls_reborn", "~> 0.26.0", require: false
   gem "erb_lint", require: false
@@ -130,6 +133,8 @@ group :development, :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
+  # Adds support for debug
+  gem "debug", ">= 1.0.0"
 end
 
 group :test do
