@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "rdbg",
+            "name": "Run & Debug",
+            "request": "launch",
+            "script": "${workspaceRoot}/bin/rails s",
+            "useBundler": false,
+            "command": "bundle exec ruby"
+        }
+    ]
+}
