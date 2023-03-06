@@ -5,6 +5,14 @@
             "type": "rdbg",
             "name": "Attach debugger",
             "request": "attach"
+        },
+        {
+            "type": "rdbg",
+            "name": "(Docker) Attach debugger",
+            "request": "attach",
+            "debugPort": "localhost:3001",
+            "showProtocolLog": true,
+            "localfsMap": "/circuitverse:${workspaceFolder}"
         }
     ]
 }
