@@ -250,6 +250,7 @@ GEM
       sanitize (< 7)
     font-awesome-sass (5.13.1)
       sassc (>= 1.11)
+    foreman (0.87.2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     geocoder (1.7.3)
@@ -710,6 +711,7 @@ DEPENDENCIES
   flipper-redis
   flipper-ui
   font-awesome-sass (~> 5.13.1)
+  foreman
   friendly_id (~> 5.4.2)
   geocoder
   hairtrigger (~> 0.2.25)

@@ -157,6 +157,7 @@ group :development do
   gem "spring"
   gem "sunspot_solr"
   gem "bundler-audit", "~> 0.9.1"
+  gem "foreman"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
