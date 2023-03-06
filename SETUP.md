@@ -83,6 +83,7 @@ Additional instructions can be found [here](https://www.howtoforge.com/tutorial/
 ) extension
 2. Run bin/dev to run application server, background job queue and asset compiler
 3. In vscode, open the debug tab and select `Attach Debugger` from the dropdown and run
+3.b. In case , you are running this app with docker, In vscode, open the debug tab and select `(Docker) Attach Debugger` from the dropdown and run
 4. Now, you can set breakpoint and debug the application
 
 #### (Optional) yosys installation for Verilog RTL Synthesis
