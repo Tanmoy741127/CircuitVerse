@@ -72,10 +72,16 @@ cd CircuitVerse
 
 Navigate to `localhost:3000` in your web browser to access the website.
 
+
 #### Additional instructions for Ubuntu
 Additional instructions can be found [here](https://www.howtoforge.com/tutorial/ubuntu-ruby-on-rails/) and there are some extra notes for single user installations:
 - If you are facing difficulties installing RVM, most probably it is because of an older version of rvm shipped with Ubuntu's desktop edition and updating the same resolves the problem.
 - [Run Terminal as a login shell](https://rvm.io/integration/gnome-terminal/) so ruby and rails will be available.
+
+#### Debug the application
+1. Run bin/dev to run application server, background job queue and asset compiler
+2. In vscode, open the debug tab and select `Attach Debugger` from the dropdown and run
+3. Now, you can set breakpoint and debug the application
 
 #### (Optional) yosys installation for Verilog RTL Synthesis
 If you wish to do Verilog RTL Synthesis/create CircuitVerse Verilog Circuits in your local development environment, you need to:
