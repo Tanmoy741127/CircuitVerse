@@ -8,6 +8,11 @@
             "script": "${workspaceRoot}/bin/rails s",
             "useBundler": false,
             "command": "bundle exec ruby"
+        },
+        {
+            "type": "rdbg",
+            "name": "Attach with debugger",
+            "request": "attach"
         }
     ]
 }
