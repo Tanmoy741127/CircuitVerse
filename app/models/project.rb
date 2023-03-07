@@ -41,11 +41,17 @@ class Project < ApplicationRecord
   validates :name, length: { minimum: 1 }
   validates :slug, uniqueness: true
 
+  # @!attribute author
+  #   @return [User] the author of the project
   belongs_to :author, class_name: "User"
   has_many :forks, class_name: "Project", foreign_key: "forked_project_id", dependent: :nullify
+  # @!attribute forked_project
+  #  @return [Project] the project that this project was forked from
   belongs_to :forked_project, class_name: "Project", optional: true
   has_many :stars, dependent: :destroy
   has_many :user_ratings, through: :stars, dependent: :destroy, source: "user"
+  # @!attribute assignment
+  #   @return [Assignment] the assignment that this project is a submission for
   belongs_to :assignment, optional: true
 
   has_noticed_notifications model_name: "NoticedNotification"
@@ -104,11 +110,16 @@ class Project < ApplicationRecord
   acts_as_commontable
   # after_commit :send_mail, on: :create
 
+  # Increase views of a user
+  # @param [User] user
+  # @return [Integer] view count
   def increase_views(user)
     increment!(:view) if user.nil? || (user.id != author_id)
   end
 
-  # returns true if starred, false if unstarred
+  # Toggle star of a project
+  # @param [User] current logged in user
+  # @return [Boolean] true if starred, false if unstarred
   def toggle_star(user)
     star = Star.find_by(user_id: user.id, project_id: id)
     if star.nil?
@@ -120,6 +131,9 @@ class Project < ApplicationRecord
     end
   end
 
+  # Fork a project of other user
+  # @param [User] current logged in user
+  # @return [Project] forked project
   def fork(user)
     forked_project = dup
     forked_project.build_project_datum.data = project_datum&.data
