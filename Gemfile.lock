@@ -798,8 +798,8 @@ DEPENDENCIES
   sidekiq
   simple_discussion!
   sitemap_generator
-  solargraph (~> 0.44.2)
-  solargraph-rails (~> 1.0.1)
+  solargraph
+  solargraph-rails
   spring
   sprockets (~> 4.1)
   stimulus-rails (~> 1.0)

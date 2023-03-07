@@ -1,5 +1,36 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: users
+#
+# id                     :bigint           not null, primary key
+# email                  :string           default(""), not null
+# encrypted_password     :string           default(""), not null
+# reset_password_token   :string
+# reset_password_sent_at :datetime
+# remember_created_at    :datetime
+# sign_in_count          :integer          default(0), not null
+# current_sign_in_at     :datetime
+# last_sign_in_at        :datetime
+# current_sign_in_ip     :string
+# last_sign_in_ip        :string
+# name                   :string
+# created_at             :datetime         not null
+# updated_at             :datetime         not null
+# provider               :string
+# uid                    :string
+# profile_picture_file_name    :string
+# profile_picture_content_type :string
+# profile_picture_file_size    :bigint
+# profile_picture_updated_at   :datetime
+# admin                  :boolean          default(FALSE)
+# country                :string
+# educational_institute  :string
+# subscribed             :boolean          default(TRUE)
+# locale                :string           default("en")
+#
+
 class User < ApplicationRecord
   mailkick_user
   require "pg_search"
@@ -72,6 +103,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
+    # @type [User]
     user = User.where(email: data["email"]).first
     name = data["name"] || data["nickname"]
     # Uncomment the section below if you want users to be created if they don't exist
