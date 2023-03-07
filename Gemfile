@@ -118,6 +118,8 @@ gem "strong_migrations"
 gem 'rails-data-migrations'
 
 group :development, :test do
+  # Install solargraph
+  gem 'solargraph-rails', '~> 0.3.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
