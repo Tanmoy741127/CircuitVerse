@@ -100,6 +100,8 @@ class User < ApplicationRecord
     text :country
   end
 
+  # Create a group member for each pending invitation
+  # @return [nil]
   def create_members_from_invitations
     pending_invitations.reload.each do |invitation|
       GroupMember.where(group_id: invitation.group.id, user_id: id).first_or_create
@@ -107,11 +109,16 @@ class User < ApplicationRecord
     end
   end
 
+  # Create a user from omniauth access token
+  # @param access_token The omniauth access token
+  # @return [User] The user created from the omniauth access token
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data["email"]).first
     name = data["name"] || data["nickname"]
     # Uncomment the section below if you want users to be created if they don't exist
+    # @type [User]
     user ||= User.create(name: name,
                          email: data["email"],
                          password: Devise.friendly_token[0, 20],
@@ -120,6 +127,10 @@ class User < ApplicationRecord
     user
   end
 
+  # From Oauth callback details create a user
+  # @param oauth_user [Hash] The oauth user details
+  # @param provider [String] The provider name
+  # @return [User] The user created from the oauth user details
   def self.from_oauth(oauth_user, provider)
     User.create(
       name: oauth_user["name"],
@@ -130,10 +141,14 @@ class User < ApplicationRecord
     )
   end
 
+  # Return Flipper Id
+  # @return [String] The flipper id
   def flipper_id
     "User:#{id}"
   end
 
+  # Return whether the user has admin role
+  # @return [Boolean] admin role status
   def moderator?
     admin?
   end
