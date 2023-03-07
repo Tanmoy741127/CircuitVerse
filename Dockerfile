@@ -26,6 +26,13 @@ RUN yarn install
 COPY . /circuitverse
 RUN yarn build
 
+# Install solargraph
+RUN gem install solargraph
+RUN solargraph download-core
+RUN solargraph bundle
+RUN bundle exec yard gems
+RUN yard config --gem-install-yri
+
 # generate key-pair for jwt-auth
 RUN openssl genrsa -out /circuitverse/config/private.pem 2048
 RUN openssl rsa -in /circuitverse/config/private.pem -outform PEM -pubout -out /circuitverse/config/public.pem

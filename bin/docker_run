@@ -18,5 +18,9 @@ bundle exec rails db:seed
 
 rm -f /circuitverse/tmp/pids/server.pid
 
-echo "Starting on 127.0.0.1:3000"
-bundle exec rails s -p 3000 -b '0.0.0.0'
+echo "Starting webserver at 127.0.0.1:3000 and solargraph server at 127.0.0.1:8787"
+bundle exec rails s -p 3000 -b '0.0.0.0' --daemon
+echo "Creating symlink"
+cd /home && mkdir -p ${HOST_CURRENT_DIRECTORY%/*}
+ln -s -T /circuitverse $HOST_CURRENT_DIRECTORY
+solargraph socket --host=0.0.0.0 --port=8787
