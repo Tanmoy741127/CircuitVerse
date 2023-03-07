@@ -66,12 +66,22 @@ class Project < ApplicationRecord
   has_one :project_datum, dependent: :destroy
   has_many :notifications, as: :notifiable
 
+  # @!scope class
+
+  # Returns all projects that are public and not forked
+  # @return [ActiveRecord::Relation<Project>] all public and not forked projects
   scope :public_and_not_forked,
         -> { where(project_access_type: "Public", forked_project_id: nil) }
 
+  # Returns all projects that are public
+  # @return [ActiveRecord::Relation<Project>] all public projects
   scope :open, -> { where(project_access_type: "Public") }
 
+  # Returns all projects of a author
+  # @param [Integer] author_id
+  # @return [ActiveRecord::Relation<Project>] all projects authoored by current user
   scope :by, ->(author_id) { where(author_id: author_id) }
+  # @!endgroup
 
   include PgSearch::Model
   accepts_nested_attributes_for :project_datum
