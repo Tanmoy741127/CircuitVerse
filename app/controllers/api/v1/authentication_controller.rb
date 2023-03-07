@@ -4,9 +4,11 @@ class Api::V1::AuthenticationController < Api::V1::BaseController
   before_action :set_oauth_user, only: %i[oauth_signup oauth_login]
 
   # POST api/v1/auth/login
+
   def login
     @user = User.find_by!(email: params[:email])
     if @user&.valid_password?(params[:password])
+      # @type [String]
       token = JsonWebToken.encode(
         user_id: @user.id, username: @user.name, email: @user.email
       )
@@ -32,6 +34,7 @@ class Api::V1::AuthenticationController < Api::V1::BaseController
   # POST api/v1/oauth/login
   def oauth_login
     @user = User.find_by!(email: @oauth_user["email"])
+    # @type [String]
     token = JsonWebToken.encode(
       user_id: @user.id, username: @user.name, email: @user.email
     )
