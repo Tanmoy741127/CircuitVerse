@@ -72,6 +72,12 @@ cd CircuitVerse
 
 Navigate to `localhost:3000` in your web browser to access the website.
 
+#### Run Solagraph Language Server for better autocomplete and suggestions
+1. Run `solargraph bundle`
+2. Run `yard gems`
+3. Install VSCode Extension from [here](https://marketplace.visualstudio.com/items?itemName=castwide.solargraph)
+For other IDE, checkout [this](https://marketplace.visualstudio.com/items?itemName=castwide.solargraph)
+
 #### Additional instructions for Ubuntu
 Additional instructions can be found [here](https://www.howtoforge.com/tutorial/ubuntu-ruby-on-rails/) and there are some extra notes for single user installations:
 - If you are facing difficulties installing RVM, most probably it is because of an older version of rvm shipped with Ubuntu's desktop edition and updating the same resolves the problem.
