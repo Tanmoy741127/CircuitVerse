@@ -131,8 +131,8 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   # Solargraph Installation
-  gem "solargraph"
-  gem "solargraph-rails"
+  gem "solargraph", "~> 0.44.2"
+  gem "solargraph-rails", "~> 1.0.1"
 end
 
 group :test do
