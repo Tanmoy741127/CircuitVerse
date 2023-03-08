@@ -9,7 +9,9 @@
       content="Digital circuits, logisim, online, educational platform, karnaugh map, kmap, electronic devices and circuits,digital electronics basics,introduction to digital electronics, simple electronics projects for students,electric circuit analysis, logic circuits, logic simulation, digital logic circuits, boolean logic">
     <%= favicon_link_tag 'favicon.ico' %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= vite_stylesheet_tag 'application.scss', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= vite_stylesheet_tag "application.scss" %>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
@@ -19,19 +21,8 @@
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <%= render partial: "layouts/google_analytics" if Rails.env.production? %>
-    <%= stylesheet_link_tag "application" %>
     <%= vite_client_tag %>
     <%= vite_javascript_tag 'application' %>
-    <!--
-      If using a TypeScript entrypoint file:
-        vite_typescript_tag 'application'
-
-      If using a .jsx or .tsx entrypoint, add the extension:
-        vite_javascript_tag 'application.jsx'
-
-      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
-    -->
-
   </head>
 
   <body>
