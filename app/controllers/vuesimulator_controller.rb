@@ -2,10 +2,16 @@
 # frozen_string_literal: true
 
 class VuesimulatorController < ApplicationController
+    require "net/http"
     def simulatorvue
-      html = File.read(Rails.root("public/simulatorvue/index.html"))
-      sanitized_html = sanitize(html)
-      render html: sanitized_html, layout: false
+      # Define the target URL you want to proxy to
+      target_url = 'http://localhost:3002'
+
+      # Make a GET request to the target URL
+      response = Net::HTTP.get_response(URI(target_url))
+
+      # Forward the response from the target URL
+      render html: response.body, status: response.code.to_i
     end
   
     private
