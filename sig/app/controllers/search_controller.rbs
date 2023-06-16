@@ -1,5 +1,0 @@
-class SearchController < ApplicationController
-  include SearchHelper
-
-  def search: () -> untyped
-end

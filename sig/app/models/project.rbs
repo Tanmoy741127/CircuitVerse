@@ -3,18 +3,18 @@ class Project < ApplicationRecord
 
   include PgSearch::Model
 
-  def increase_views: (untyped user) -> (untyped | nil)
+  def increase_views: (User user) -> (Project | nil)
 
   # returns true if starred, false if unstarred
-  def toggle_star: (untyped user) -> untyped
+  def toggle_star: (User user) -> ActiveRecord::Type::Boolean
 
-  def fork: (untyped user) -> untyped
+  def fork: (User user) -> untyped
 
   def send_mail: () -> (untyped | nil)
 
   def project_notifiable_path: () -> untyped
 
-  def self.tagged_with: (untyped name) -> untyped
+  def self.tagged_with: (ActiveRecord::Type::String name) -> untyped
 
   def tag_list: () -> untyped
 

@@ -1,5 +1,0 @@
-class Users::SessionsController < Devise::SessionsController
-  private
-
-  def check_captcha: () -> (untyped | nil)
-end

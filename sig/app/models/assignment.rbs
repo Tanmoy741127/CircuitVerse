@@ -1,21 +1,21 @@
 class Assignment < ApplicationRecord
-  def notify_recipient: () -> untyped
+  def notify_recipient: () -> void
 
-  def send_new_assignment_mail: () -> untyped
+  def send_new_assignment_mail: () -> void
 
-  def send_update_mail: () -> (untyped | nil)
+  def send_update_mail: () -> void
 
-  def set_deadline_job: () -> (untyped | nil)
+  def set_deadline_job: () -> void
 
-  def clean_restricted_elements: () -> untyped
+  def clean_restricted_elements: () -> ActiveRecord::Type::Json
 
-  def graded?: () -> untyped
+  def graded?: () -> ActiveRecord::Type::Boolean
 
-  def elements_restricted?: () -> untyped
+  def elements_restricted?: () -> ActiveRecord::Type::Boolean
 
-  def lti_integrated?: () -> untyped
+  def lti_integrated?: () -> ActiveRecord::Type::Boolean
 
-  def project_order: () -> untyped
+  def project_order: () -> Array[ProjectDecorator]
 
-  def check_reopening_status: () -> untyped
+  def check_reopening_status: () -> ActiveRecord::Type::Boolean
 end
