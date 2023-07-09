@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Get current UID and GID
+CURRENT_UID=$(id -u)
+CURRENT_GID=$(id -g)
+
+# Check if current UID is 0 (root user)
+if [ $CURRENT_UID -eq 0 ]; then
+    echo "This script should not be run as root."
+    echo "Please switch to a non-root user."
+    exit 1
+fi
+
+# # Check if Docker can be run without sudo
+if docker ps > /dev/null 2>&1; then
+    echo "Docker can be run without sudo."
+    CURRENT_UID=$CURRENT_UID CURRENT_GID=$CURRENT_GID docker-compose up $@
+else
+    echo "Docker requires sudo permission."
+    echo "Please enter your password to continue."
+
+    # Run docker-compose with sudo
+    sudo CURRENT_UID=$CURRENT_UID CURRENT_GID=$CURRENT_GID docker-compose up $@
+fi

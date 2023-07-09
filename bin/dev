@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm -f ./tmp/pids/server.pid
+
 if ! command -v foreman &> /dev/null
 then
   echo "Installing foreman..."

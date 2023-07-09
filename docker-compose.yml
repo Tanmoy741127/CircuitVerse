@@ -5,60 +5,41 @@ services:
     environment:
       POSTGRES_DB: circuitverse_development
       POSTGRES_PASSWORD: postgres
-  sidekiq:
-    depends_on:
-      - db
-      - redis
-      - mailcatcher
-    build: .
-    command: bundle exec sidekiq -q default -q mailers
-    volumes:
-      - /circuitverse/.bundle
-      - /circuitverse/node_modules
-      - .:/circuitverse:rw
-      - ./config/database.docker.yml:/circuitverse/config/database.yml:rw
+
+  redis:
+    image: redis
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USER_ID=${CURRENT_UID}
+        - GROUP_ID=${CURRENT_GID}
+    entrypoint: ./bin/docker_run
     environment:
       REDIS_URL: "redis://redis:6379/0"
-  web:
-    build: .
-    entrypoint: /circuitverse/bin/docker_run
+      CIRCUITVERSE_USE_SOLR: "false"
+      DOCKER_ENVIRONMENT: "true"
+      RAILS_ENV: "development"
+      NODE_ENV: "development"
     volumes:
-      - /circuitverse/.bundle
-      - /circuitverse/node_modules
       - .:/circuitverse:rw
       - ./config/database.docker.yml:/circuitverse/config/database.yml:rw
+      - ruby_bundle:/usr/local/bundle:rw
     ports:
       - "3000:3000"
       - "3001:3001"
     depends_on:
       - db
       - redis
-      - sidekiq
-    environment:
-      REDIS_URL: "redis://redis:6379/0"
-      CIRCUITVERSE_USE_SOLR: "false"
-      DOCKER_ENVIRONMENT: 'true'
-  redis:
-    image: redis
-  asset_build:
-    build: .
-    environment:
-      - NODE_ENV=development
-      - RAILS_ENV=development
-    command: yarn build --watch
-    volumes:
-      - .:/circuitverse:rw
-      - /circuitverse/.bundle
-      - /circuitverse/node_modules
-    ports:
-      - '127.0.0.1:3035:3035'
 
-  mailcatcher:
-    image: schickling/mailcatcher
-    ports:
-      - '127.0.0.1:1080:1080'
-      - '127.0.0.1:1025:1025'
 
 volumes:
-  app:
-  public:
+  ruby_bundle:
