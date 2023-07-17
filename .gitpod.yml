@@ -2,18 +2,17 @@ image:
   file: .gitpod.Dockerfile
 
 ports:
-  - port: 3000
-    onOpen: open-preview
+  - name: Web App
+    port: 3000
+    onOpen: open-browser
+  - port: 3001-9000
+    onOpen: ignore
 tasks:
-  - before: >
+  - init: >
       rvm autolibs disable &&
       rvm install 3.2.0 &&
       nvm install 14 &&
       gem install bundler &&
-      bundle config set --local without 'production' &&
-      bundle install --path vendor/bundle &&
-      yarn
-    init: >
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
       (redis-server &) &&
@@ -27,14 +26,14 @@ tasks:
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
-      bundle config set --local without 'production' &&
       bundle install --path vendor/bundle &&
       yarn &&
       bundle exec rails db:create &&
       bundle exec rails db:schema:load &&
       bundle exec rails db:migrate &&
       bundle exec rails db:seed &&
-      clear
+      bin/dev
+
 github:
     prebuilds:
         pullRequestsFromForks: true
