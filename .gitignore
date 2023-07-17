@@ -96,3 +96,6 @@ node_modules
 
 # ignore rbs collection
 .gem_rbs_collection
+
+# Ignore vendor folder generated in Gitpod Environment
+vendor/
