@@ -5,11 +5,15 @@ ports:
   - port: 3000
     onOpen: open-preview
 tasks:
-  - init: >
+  - before: >
       rvm autolibs disable &&
       rvm install 3.2.0 &&
       nvm install 14 &&
       gem install bundler &&
+      bundle config set --local without 'production' &&
+      bundle install --path vendor/bundle &&
+      yarn
+    - init: >
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
       (redis-server &) &&
@@ -30,7 +34,7 @@ tasks:
       bundle exec rails db:schema:load &&
       bundle exec rails db:migrate &&
       bundle exec rails db:seed &&
-      bin/dev
+      clear
 github:
     prebuilds:
         pullRequestsFromForks: true
