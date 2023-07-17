@@ -13,7 +13,7 @@ tasks:
       bundle config set --local without 'production' &&
       bundle install --path vendor/bundle &&
       yarn
-    - init: >
+    init: >
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
       (redis-server &) &&
