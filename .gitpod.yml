@@ -4,7 +4,7 @@ image:
 ports:
   - name: Web App
     port: 3000
-    onOpen: open-browser
+    onOpen: open-preview
   - port: 3001-9000
     onOpen: ignore
 tasks:
