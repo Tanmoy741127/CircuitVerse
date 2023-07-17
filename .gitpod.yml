@@ -12,10 +12,18 @@ tasks:
       gem install bundler &&
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
-      bundle config set --local without 'production'
+      (redis-server &) &&
+      bundle config set --local without 'production' &&
+      bundle install --path vendor/bundle &&
+      yarn &&
+      bundle exec rails db:create &&
+      bundle exec rails db:schema:load &&
+      bundle exec rails db:migrate &&
+      bundle exec rails db:seed
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
+      bundle config set --local without 'production' &&
       bundle install --path vendor/bundle &&
       yarn &&
       bundle exec rails db:create &&
