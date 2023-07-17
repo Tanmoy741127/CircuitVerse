@@ -20,6 +20,6 @@ COPY Gemfile Gemfile.lock package.json yarn.lock ./
 # Install Ruby and Gems
 RUN rvm autolibs disable \
     && rvm install 3.2.0 \
-    && gem install bundler \
-    && bundle config set --local without 'production' \
+    && gem install bundler
+RUN bundle config set --local without 'production' \
     && bundle install --path vendor/bundle
