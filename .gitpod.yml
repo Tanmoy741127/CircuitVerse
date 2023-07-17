@@ -12,17 +12,13 @@ tasks:
       gem install bundler &&
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
-      (redis-server &) &&
-      bundle install --without production --path vendor/bundle &&
-      yarn &&
-      bundle exec rails db:create &&
-      bundle exec rails db:schema:load &&
-      bundle exec rails db:migrate &&
-      bundle exec rails db:seed
+      bundle config set --local without 'production' &&
+      echo "export PATH=/workspace/CircuitVerse/vendor/bundle/ruby/3.2.0/bin:$PATH" >> ~/.bashrc &&
+      source ~/.bashrc
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
-      bundle install --without production --path vendor/bundle &&
+      bundle install --path vendor/bundle &&
       yarn &&
       bundle exec rails db:create &&
       bundle exec rails db:schema:load &&
