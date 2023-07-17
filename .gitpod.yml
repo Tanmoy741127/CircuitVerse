@@ -32,7 +32,7 @@ tasks:
       bundle exec rails db:schema:load &&
       bundle exec rails db:migrate &&
       bundle exec rails db:seed &&
-      bin/dev chrome_debug
+      bin/dev
 github:
     prebuilds:
         pullRequestsFromForks: true
