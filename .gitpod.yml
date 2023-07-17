@@ -12,7 +12,7 @@ tasks:
       gem install bundler &&
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
-      bundle config set --local without 'production' &&
+      bundle config set --local without 'production'
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
