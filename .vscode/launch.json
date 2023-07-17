@@ -13,6 +13,13 @@
             "debugPort": "localhost:3001",
             "showProtocolLog": true,
             "localfsMap": "/circuitverse:${workspaceFolder}"
+        },
+        {
+            "type": "rdbg",
+            "name": "(Gitpod) Attach debugger [:3001]",
+            "request": "attach",
+            "debugPort": "localhost:3001",
+            "showProtocolLog": true
         }
     ]
 }

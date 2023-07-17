@@ -9,6 +9,9 @@ fi
 if [[ "$1" == "chrome_debug" ]]; then
  echo "Starting foreman with Procfile.chrome.dev..."
  foreman start -f Procfile.chrome.dev
+if [[ "$1" == "gitpod" ]]; then
+  echo "Starting foreman with Procfile.gitpod.dev..."
+  foreman start -f Procfile.gitpod.dev
 else
  echo "Starting foreman with Procfile.dev..."
  foreman start -f Procfile.dev
