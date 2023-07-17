@@ -13,8 +13,6 @@ tasks:
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
       bundle config set --local without 'production' &&
-      echo "export PATH=/workspace/CircuitVerse/vendor/bundle/ruby/3.2.0/bin:$PATH" >> ~/.bashrc &&
-      source ~/.bashrc
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
