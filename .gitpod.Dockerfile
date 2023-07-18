@@ -15,8 +15,7 @@ RUN apt-get update \
 # COPY dependencies files
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 
-RUN groupadd --gid 33333 gitpod \
-    && useradd --uid 33333 --gid 33333 -m gitpod
+
 USER gitpod
 
 RUN mkdir -p /workspace/CircuitVerse
