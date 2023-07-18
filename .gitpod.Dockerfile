@@ -27,4 +27,3 @@ RUN /bin/bash -l -c "rvm autolibs disable \
     && bundle config set --local without 'production' \
     && bundle install \
     && yarn"
-RUN /bin/bash -l -c "bundle lock --add-gems "
