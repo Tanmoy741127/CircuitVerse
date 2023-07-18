@@ -29,5 +29,4 @@ RUN /bin/bash -l -c "rvm autolibs disable \
     && cd /workspace/CircuitVerse \
     && gem install bundler \
     && bundle config set --local without 'production' \
-    && bundle install \
-    && yarn"
+    && bundle install"
