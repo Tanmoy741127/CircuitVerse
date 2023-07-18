@@ -9,11 +9,16 @@ ports:
     onOpen: ignore
 tasks:
   - init: >
+      echo '{"rdbg.rubyVersionManager": "rvm"}' > .vscode/settings.json &&
+      rvm autolibs disable &&
+      rvm install 3.2.0 &&
       nvm install 14 &&
-      yarn &&
+      gem install bundler &&
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
       (redis-server &) &&
+      bundle install --without production --path vendor/bundle &&
+      yarn &&
       bundle exec rails db:create &&
       bundle exec rails db:schema:load &&
       bundle exec rails db:migrate &&
@@ -21,6 +26,12 @@ tasks:
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
+      bundle install --without production --path vendor/bundle &&
+      yarn &&
+      bundle exec rails db:create &&
+      bundle exec rails db:schema:load &&
+      bundle exec rails db:migrate &&
+      bundle exec rails db:seed &&
       bin/dev
 github:
     prebuilds:
