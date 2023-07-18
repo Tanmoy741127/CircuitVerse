@@ -9,7 +9,7 @@ ports:
     onOpen: ignore
 tasks:
   - init: >
-      echo '{"rdbg.rubyVersionManager": "rvm"}' > .vscode/settings.json &&
+      cp ./.gitpod.vscode.settings .vscode/settings.json &&
       rvm autolibs disable &&
       rvm install 3.2.0 &&
       nvm install 14 &&
