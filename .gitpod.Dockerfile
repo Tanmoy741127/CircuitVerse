@@ -1,6 +1,7 @@
 FROM gitpod/workspace-postgres
 
 USER root
+RUN mkdir -p /workspace/CircuitVerse
 WORKDIR /workspace/CircuitVerse
 
 # Install custom tools, runtime, etc. using apt-get
@@ -18,7 +19,12 @@ RUN apt-get update \
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 
 # Install Ruby and Gems
-RUN rvm autolibs disable \
+RUN /bin/bash -l -c "rvm autolibs disable \
     && rvm install 3.2.0 \
-    && gem install bundler
-RUN /bin/bash -l -c "bundle config set --local without 'production' && bundle install --path vendor/bundle"
+    && rvm use 3.2.0 \
+    && cd /workspace/CircuitVerse \
+    && gem install bundler \
+    && bundle config set --local without 'production' \
+    && bundle install \
+    && yarn"
+RUN /bin/bash -l -c "bundle lock --add-gems "

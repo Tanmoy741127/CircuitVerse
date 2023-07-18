@@ -9,11 +9,9 @@ ports:
     onOpen: ignore
 tasks:
   - init: >
-      nvm install 14  &&
       cp config/database.example.yml config/database.yml &&
       createuser -s postgres &&
       (redis-server &) &&
-      yarn &&
       bundle exec rails db:create &&
       bundle exec rails db:schema:load &&
       bundle exec rails db:migrate &&
@@ -21,12 +19,6 @@ tasks:
     command: >
       sleep 5 &&
       redis-server --daemonize yes &&
-      bundle install --path vendor/bundle &&
-      yarn &&
-      bundle exec rails db:create &&
-      bundle exec rails db:schema:load &&
-      bundle exec rails db:migrate &&
-      bundle exec rails db:seed &&
       bin/dev
 github:
     prebuilds:
